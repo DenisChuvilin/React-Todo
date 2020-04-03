@@ -1,6 +1,7 @@
 import React from 'react';
 
-import TodoForm from "./components/TodoForm";
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 class App extends React.Component {
   // `<App />` will hold all the data needed for this project. It will also be the container for your Todo Components.
@@ -11,32 +12,63 @@ class App extends React.Component {
     this.state = {
       tasks: [
         {
-          task: 'Buy Toilet Paper',
+          name: 'Buy Toilet Paper',
           id: 1,
-          comleted: false,
+          completed: false,
+        },
+        {
+          name: 'Buy Hand Sanitizer',
+          id: 2,
+          completed: false,
         },
       ],
     };
   }
 
-  toggleItem = (event, taskId) => {
-    event.preventDefault();
+  // class methods to update state
+  addItem = (e, item) => {
+    e.preventDefault();
 
-    tasks: this.state.tasks.map(task => {
-      if (task.id === taskId) {
-        return {
-          ...task,
-          completed: !task.comleted,
-        };
-      }
+    const newItem = {
+      name: item,
+      id: Date.now(),
+      completed: false,
+    };
+    this.setState({
+      tasks: [...this.state.tasks, newItem],
+    });
+  };
+
+  toggleItem = itemId => {
+    console.log(itemId);
+
+    this.setState({
+      tasks: this.state.tasks.map(item => {
+        if (itemId === item.id) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
+        }
+        return item;
+      }),
+    });
+  };
+
+  clearCompleted = e => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.filter(item => !item.completed),
     });
   };
 
   render() {
-    // console.log(this.state.tasks)
+    console.log('rendering...');
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoForm addItem={this.addItem} />
+        <TodoList tasks={this.state.tasks} toggleItem={this.toggleItem} clearCompleted={this.clearCompleted} />
       </div>
     );
   }
