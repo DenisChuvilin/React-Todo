@@ -58,6 +58,7 @@ class App extends React.Component {
   clearCompleted = e => {
     e.preventDefault();
     this.setState({
+      // returns the items that havent been purchased and purges the ones that have been purchased
       tasks: this.state.tasks.filter(item => !item.completed),
     });
   };
