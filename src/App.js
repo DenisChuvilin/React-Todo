@@ -38,10 +38,9 @@ class App extends React.Component {
       tasks: [...this.state.tasks, newItem],
     });
   };
-
+//toggle class of an item
   toggleItem = itemId => {
-    console.log(itemId);
-
+    // console.log(itemId);
     this.setState({
       tasks: this.state.tasks.map(item => {
         if (itemId === item.id) {
@@ -54,7 +53,7 @@ class App extends React.Component {
       }),
     });
   };
-
+//erase tasks with a completed class
   clearCompleted = e => {
     e.preventDefault();
     this.setState({
@@ -64,7 +63,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log('rendering...');
+    // console.log('rendering...');
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>

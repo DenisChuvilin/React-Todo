@@ -13,14 +13,14 @@ constructor(){
         this.setState({[e.target.name]: e.target.value})
     };
 
-    //class property to submit form
+    //method to submit form
 submitItem = (e) => {
     e.preventDefault();
     this.props.addItem(e, this.state.item);
 
 }
     render () {
-        console.log("rendering form", this.state.item);
+        // console.log("rendering form", this.state.item);
         return (
             <form onSubmit={this.submitItem}>
                 <input type="text" name = 'item' onChange={this.handleChanges}/>
