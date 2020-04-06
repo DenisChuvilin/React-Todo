@@ -1,0 +1,13 @@
+.item_completed {
+    color: rgb(0,0,0,.3)
+}
+
+.success{
+    display: block;
+    color:mediumseagreen;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.not-done{
+    display: none;
+}
